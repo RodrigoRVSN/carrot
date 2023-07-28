@@ -7,7 +7,7 @@ from .models import Product
 class ProductView(APIView):
     def get(self, request, *args, **kwargs):
         products = Product.objects.all() 
-        
+
         if len(products) == 0:
             return Response(status = status.HTTP_204_NO_CONTENT)
         
@@ -18,7 +18,6 @@ class ProductView(APIView):
         name = request.data.get("name")
         price = request.data.get("price")
         available = request.data.get("available", True)
-        print(name, price, available)
 
         if not name or not price:
             return Response({"error": "a field is missing."}, status = status.HTTP_400_BAD_REQUEST)
