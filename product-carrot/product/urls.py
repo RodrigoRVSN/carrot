@@ -20,5 +20,5 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('products/', views.get_all_products),
+    path('products', views.ProductView.as_view()),
 ]
