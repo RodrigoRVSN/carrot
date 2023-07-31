@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
 from .serializer import UserSerializer
 from .models import Customer
 
@@ -26,7 +27,9 @@ class UserLoginView(APIView):
             return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
         if user.check_password(password):
-            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+            return Response({'token': access_token, 'message': 'Login successful'}, status=status.HTTP_200_OK)
         
         return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
