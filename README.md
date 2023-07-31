@@ -1,6 +1,6 @@
 - [x] Configure Docker 
 - [x] Configure PostgreSQL
-- [ ] Handle user authentication
+- [x] Handle user authentication
 - [ ] User middleware
 - [ ] Handle Product Order
 - [ ] Refactor monolith
