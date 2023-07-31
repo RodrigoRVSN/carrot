@@ -26,5 +26,4 @@ class ProductView(APIView):
         product.save()
 
         return Response({"message": "product created successfully!"}, status = status.HTTP_201_CREATED)
-
-
+    
