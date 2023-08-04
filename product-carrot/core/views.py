@@ -2,12 +2,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from product.auth.jwt_authentication import CustomJWTAuthentication
 from .serializer import ProductSerializer
 from .models import Product
 
 class ProductView(APIView):
-    # TODO: fix authentication middleware
-    # permission_classes = [IsAuthenticated]
+    authentication_classes= [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         products = Product.objects.all() 

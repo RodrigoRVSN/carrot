@@ -20,3 +20,7 @@ class Customer(models.Model):
     def check_password(self, password):
         is_same_password = check_password(password, self.password)
         return is_same_password
+    
+    @property
+    def is_authenticated(self):
+        return True
